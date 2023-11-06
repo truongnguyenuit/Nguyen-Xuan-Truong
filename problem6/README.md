@@ -1,9 +1,9 @@
-#### Scoreboard API Module
+# Scoreboard API Module
 
-### Overview 
+## Overview 
 This module is responsible for providing a RESTful interface to interact with the scoreboard data. It provides endpoints that allow users to increase their score by performing actions and update scoreboard real-time.
 
-### Update user score module
+## Update user score module
 ENDPOINT: POST `/api/user/score/update`
 DESCRIPTION: Increase a user's score after they complete an action. This involves several checks:
 
@@ -12,23 +12,23 @@ Confirm the user's completion of the action.
 Check the validity of the secret token they provided before increasing their score.
 If everything is in order, increase their score and log the action in the database, making the secret token expire.
 
-# Return false if:
+### Return false if:
 
 - userId is not provided.
 - actionId is not provided.
 - secretToken is not provided.
 
-# Return false if:
+### Return false if:
 
 - No user with the provided userId is found in the database.
 - No action with the provided actionId is found in the database.
 
-# Return false if:
+### Return false if:
 
 The time of the last update is less than 24 hours **can be flexible in a real project**
 - The secret token has expired.
 
-# After decoding the secret token to obtain userId and ACCESS_SALT:
+### After decoding the secret token to obtain userId and ACCESS_SALT:
 
 - Return false if userId does not match the provided userId.
 - Return false if ACCESS_SALT does not match the ACCESS_SALT in the .env file.
@@ -39,7 +39,7 @@ Make the secret token expired.
 Return true.
 Otherwise, return false.
 
-# REQUEST:
+### REQUEST:
 `json`
 {
   "userId": "string",
@@ -47,7 +47,7 @@ Otherwise, return false.
   "secretToken": "string"
 }
 
-# RESPONSE: 
+#### RESPONSE: 
 `json` 
 {
   "success": "boolean",
@@ -55,24 +55,24 @@ Otherwise, return false.
   "user": "Object"
 }
 
-### Software Requirements
+## Software Requirements
 
-## API score board
+### API score board
   If people complete their actions and increase their scores, update the database and return the new scoreboard after sorting. Additionally, call the writing log API.
 
-## Live update 
+### Live update 
   I suggest using sockets to connect between the front-end and back-end instead of HTTP, as sockets are faster, cheaper, and have a smaller footprint than HTTP requests.
 
-## Authorization
-# To prevent malicious users, it is recommended to use a `SECRET_TOKEN`
+### Authorization
+#### To prevent malicious users, it is recommended to use a `SECRET_TOKEN`
   This can be achieved by combining `SECRET_SALT` with the user's `userId` in the Action Module. After a user completes an action, a `secretToken` is generated, and this token must be included in the "Update User Score Module".
 
-# check the status of their `action` before increasing their score:
+#### check the status of their `action` before increasing their score:
   An action marked as complete should contain information about the user who completed it. If the check for the user or the action's status is not successful, return an error message.
   Users should not be able to use other people's `SECRET_TOKEN` to increase their scores.
   If the `secretToken` is not valid, return an error message.
 
-## Improvement
+### Improvement
   + Implement a score log to prevent abnormal score increases.
   + Utilize third-party services for authentication and authorization.
   + Limit the rate of score increase based on the action completion rate.
