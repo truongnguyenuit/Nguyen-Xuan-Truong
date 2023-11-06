@@ -28,9 +28,9 @@ there is a validation middleware to validate input.
 You can find detailed descriptions about URLs and features in the 
 src/controllers/resource.controller.ts file.
 
-# If you encounter any issues while starting the server, please don't hesitate to contact me at the following phone number in Vietnam:
+###### If you encounter any issues while starting the server, please don't hesitate to contact me at the following phone number in Vietnam:
 
 (+84) 0586455838
 
-# Thank you very much for your time.
+###### Thank you very much for your time.
 
