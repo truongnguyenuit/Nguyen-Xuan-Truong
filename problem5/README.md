@@ -3,15 +3,15 @@
 ## 1.Getting Started
 To run the Node server locally, follow these steps:
 
-a.Clone this repo
+#### a.Clone this repo
 
-b.Run the following command to install all the required dependencies:
+#### b.Run the following command to install all the required dependencies:
 
 ### `$ cd problem5`
 
 ### `$ yarn` 
 
-c.Start the server locally with the following command:
+#### c.Start the server locally with the following command:
 
 ### `$ yarn dev` 
 
