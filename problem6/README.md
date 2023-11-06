@@ -4,8 +4,9 @@
 This module is responsible for providing a RESTful interface to interact with the scoreboard data. It provides endpoints that allow users to increase their score by performing actions and update scoreboard real-time.
 
 ## 2.Update user score module
-ENDPOINT: POST `/api/user/score/update`
-DESCRIPTION: Increase a user's score after they complete an action. This involves several checks:
+**ENDPOINT:** POST `/api/user/score/update`
+
+**DESCRIPTION:** Increase a user's score after they complete an action. This involves several checks:
 
 Verify the status of the action they completed.
 Confirm the user's completion of the action.
@@ -18,27 +19,21 @@ If everything is in order, increase their score and log the action in the databa
 - `actionId` is not provided.
 - `secretToken` is not provided.
 
-### Return false if:
-
 - No user with the provided `userId` is found in the database.
 - No action with the provided `actionId` is found in the database.
-
-### Return false if:
 
 The time of the last update is less than 24 hours **`can be flexible in a real project`**
 - The `secretToken` has expired.
 
-### After decoding the secret token to obtain `userId` and `ACCESS_SALT`:
+#### After decoding the secret token to obtain `userId` and `ACCESS_SALT`:
 
 - Return false if `userId` does not match the provided `userId`.
 - Return false if `ACCESS_SALT` does not match the `ACCESS_SALT` in the .env file.
 
-### If the score update is successful:
+### After that, return true:
 
-Write a log for the scoreboard.
-Make the `secretToken` expired.
-Return `true`.
-Otherwise, return `false`.
+- Write a log for the scoreboard.
+- Make the `secretToken` expired.
 
 ### REQUEST:
 `json`
