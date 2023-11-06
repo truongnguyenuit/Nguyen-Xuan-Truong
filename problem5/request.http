@@ -1,0 +1,30 @@
+POST http://localhost:3000/resource
+Content-Type: application/json
+
+{
+  "name": "salt",
+  "category": "consumer goods",
+  "description": "salt from sea"
+}
+###
+GET http://localhost:3000/resource/
+Content-Type: application/json
+###
+GET http://localhost:3000/resource/15
+Content-Type: application/json
+###
+GET http://localhost:3000/resource/category/consumer goods
+Content-Type: application/json
+###
+PUT http://localhost:3000/resource/15
+Content-Type: application/json
+
+{
+  "name": "water",
+  "category": "building material",
+  "description": "fresh water"
+}
+
+###
+DELETE http://localhost:3000/resource/17
+Content-Type: application/json
